@@ -5,5 +5,6 @@ data class Forum(
     val title: String,
     val description: String,
     val userName: String,
-    val comment: Comment
+    val comment: ArrayList<Comment> = arrayListOf(),
+    val createdAt: String,
 )

@@ -3,12 +3,13 @@ package com.soten.genieforum.di
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.soten.genieforum.data.api.AuthApi
-import com.soten.genieforum.data.api.AuthFirestoreApi
+import com.soten.genieforum.data.api.auth.AuthApi
+import com.soten.genieforum.data.api.auth.AuthFirestoreApi
+import com.soten.genieforum.data.api.forum.ForumApi
+import com.soten.genieforum.data.api.forum.ForumFirestoreApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -27,7 +28,11 @@ object ForumModule {
     @Provides
     @Singleton
     fun provideAuthApi(): AuthApi {
-        return AuthFirestoreApi(provideFirebaseAuth())
+        return AuthFirestoreApi(provideFirebaseAuth(), provideForumFirestore())
     }
+
+    @Provides
+    @Singleton
+    fun provideFirestoreApi(): ForumApi = ForumFirestoreApi(provideForumFirestore())
 
 }

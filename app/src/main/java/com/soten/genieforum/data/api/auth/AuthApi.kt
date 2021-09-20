@@ -1,4 +1,4 @@
-package com.soten.genieforum.data.api
+package com.soten.genieforum.data.api.auth
 
 import com.google.firebase.auth.FirebaseUser
 

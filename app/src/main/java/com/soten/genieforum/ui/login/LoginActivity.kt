@@ -47,8 +47,8 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(
                     Intent(this, ContentSelectActivity::class.java)
                 )
+                finish()
             } else {
-                setTheme(R.style.Theme_GenieForum)
                 binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
                 initViews()
             }

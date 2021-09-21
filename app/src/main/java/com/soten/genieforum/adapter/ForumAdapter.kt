@@ -2,6 +2,7 @@ package com.soten.genieforum.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,9 @@ import com.soten.genieforum.databinding.ForumBinding
 import com.soten.genieforum.domain.model.Forum
 import com.soten.genieforum.domain.model.Topic
 
-class ForumAdapter : ListAdapter<Forum, ForumAdapter.ForumViewHolder>(diffUtil) {
+class ForumAdapter(
+    private val itemClickListener: (Forum) -> Unit
+) : ListAdapter<Forum, ForumAdapter.ForumViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -39,6 +42,10 @@ class ForumAdapter : ListAdapter<Forum, ForumAdapter.ForumViewHolder>(diffUtil) 
                 Topic.EXERCISE.name -> binding.topicImage.load(R.drawable.ic_exercise)
                 Topic.TRIP.name -> binding.topicImage.load(R.drawable.ic_trip)
                 Topic.LOVE.name -> binding.topicImage.load(R.drawable.ic_love)
+            }
+
+            binding.root.setOnClickListener {
+                itemClickListener.invoke(forum)
             }
         }
     }

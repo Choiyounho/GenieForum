@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data class="ForumBinding">
+
         <variable
             name="forum"
             type="com.soten.genieforum.domain.model.Forum" />
@@ -24,24 +25,30 @@
             tools:background="@color/colorPrimary" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="@{forum.userName}"
             android:textColor="@color/black"
             android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@id/commentCountText"
             app:layout_constraintStart_toEndOf="@id/topicImage"
             app:layout_constraintTop_toTopOf="@id/topicImage"
             tools:text="myName" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="@{forum.title}"
             android:textColor="@color/black"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="@id/topicImage"
+            app:layout_constraintEnd_toStartOf="@id/commentCountText"
             app:layout_constraintStart_toEndOf="@id/topicImage"
             tools:text="title" />
 
@@ -51,14 +58,14 @@
             android:layout_height="60dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/ic_comment"
-            android:text='@{forum.comments.empty ? "0" : forum.comments.size()}'
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:text="@{forum.commentCount}"
+            android:textColor="@color/black"
+            android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:paddingBottom="8dp"
             tools:text="2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

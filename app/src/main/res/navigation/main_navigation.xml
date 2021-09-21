@@ -9,11 +9,23 @@
         android:id="@+id/navigationHome"
         android:name="com.soten.genieforum.ui.main.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/toDetailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigationSettings"
         android:name="com.soten.genieforum.ui.main.settings.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.soten.genieforum.ui.main.home.detail.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail" />
+
 </navigation>

@@ -14,5 +14,5 @@ data class Forum(
     val topic: String? = Topic.FREE.name,
     val userName: String? = null,
     val createdAt: String? = null,
-    val comments: @RawValue ArrayList<Comment>? = arrayListOf(),
+    val commentCount: String? = "0",
 ): Parcelable

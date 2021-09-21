@@ -1,8 +1,8 @@
 package com.soten.genieforum.domain.model
 
 data class Comment(
-    val id: String,
-    val userName: String,
-    val description: String,
-    val createdAt: String,
+    val forumId: String? = null,
+    val userName: String? = null,
+    val description: String? = null,
+    val createdAt: String? = null,
 )

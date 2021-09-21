@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.soten.genieforum.R
+import com.soten.genieforum.data.api.ApiKey.FORUM10
+import com.soten.genieforum.data.api.ApiKey.FORUM2030
+import com.soten.genieforum.data.api.ApiKey.FORUM4050
 import com.soten.genieforum.databinding.ActivityContentSelectBinding
 import com.soten.genieforum.ui.main.MainActivity
 
@@ -22,17 +25,18 @@ class ContentSelectActivity : AppCompatActivity() {
     private fun initViews() = with(binding) {
         val intent = Intent(this@ContentSelectActivity, MainActivity::class.java)
         age10.setOnClickListener {
-            putExtra(intent, AGE10)
+            putExtra(intent, FORUM10)
         }
         age2030.setOnClickListener {
-            putExtra(intent, AGE2030)
+            putExtra(intent, FORUM2030)
         }
         age4050.setOnClickListener {
-            putExtra(intent, AGE4050)
+            putExtra(intent, FORUM4050)
         }
+
     }
 
-    private fun putExtra(intent: Intent, age: Int) {
+    private fun putExtra(intent: Intent, age: String) {
         intent.putExtra(KEY, age)
         startActivity(intent)
     }

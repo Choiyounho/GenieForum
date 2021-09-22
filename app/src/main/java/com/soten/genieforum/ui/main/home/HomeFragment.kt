@@ -16,7 +16,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.soten.genieforum.R
 import com.soten.genieforum.adapter.ForumAdapter
 import com.soten.genieforum.databinding.FragmentHomeBinding
+import com.soten.genieforum.di.ForumModule.provideFirebaseAuth
 import com.soten.genieforum.domain.model.Topic
+import com.soten.genieforum.extensions.ToastMessage.NOT_CURRENT_USER
+import com.soten.genieforum.extensions.toast
 import com.soten.genieforum.ui.select.ContentSelectActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,6 +34,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var forumAdapter: ForumAdapter
 
+    private lateinit var forumAge: String
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,6 +47,8 @@ class HomeFragment : Fragment() {
         if (age != null) {
             viewModel.fetch(age)
         }
+
+        forumAge = age!!
 
         return binding.root
     }
@@ -60,9 +67,13 @@ class HomeFragment : Fragment() {
         }
 
         binding.fab.setOnClickListener {
-            startActivity(
-                Intent(context, AddForumActivity::class.java)
-            )
+            if (viewModel.isCurrentUser()) {
+                startActivity(
+                    Intent(context, AddForumActivity::class.java)
+                )
+            } else {
+                toast(NOT_CURRENT_USER)
+            }
         }
     }
 
@@ -73,7 +84,8 @@ class HomeFragment : Fragment() {
                 KEY_FORUM_USERNAME to forum.userName,
                 KEY_FORUM_TITLE to forum.title,
                 KEY_FORUM_DESCRIPTION to forum.description,
-                KEY_FORUM_ID to forum.id
+                KEY_FORUM_ID to forum.id,
+                KEY_FORUM_AGE to forumAge
             )
 
             findNavController().navigate(R.id.toDetailFragment, bundle)
@@ -100,6 +112,7 @@ class HomeFragment : Fragment() {
         const val KEY_FORUM_TITLE = "title"
         const val KEY_FORUM_DESCRIPTION = "description"
         const val KEY_FORUM_ID = "id"
+        const val KEY_FORUM_AGE = "age"
     }
 
 }

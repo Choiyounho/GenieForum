@@ -10,7 +10,9 @@ import com.soten.genieforum.R
 import com.soten.genieforum.databinding.ActivityLoginBinding
 import com.soten.genieforum.extensions.ToastMessage.WELCOME_COMMENT
 import com.soten.genieforum.extensions.toast
+import com.soten.genieforum.ui.onboard.OnBoardingActivity
 import com.soten.genieforum.ui.select.ContentSelectActivity
+import com.soten.genieforum.util.GlobalData
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -44,9 +46,16 @@ class LoginActivity : AppCompatActivity() {
         viewModel.authLiveData.observe(this) { currentUser ->
             if (currentUser != null) {
                 toast(WELCOME_COMMENT)
-                startActivity(
-                    Intent(this, ContentSelectActivity::class.java)
-                )
+                if (GlobalData.showOnBoarding) {
+                    startActivity(
+                        Intent(this, ContentSelectActivity::class.java)
+                    )
+                } else {
+                    startActivity(
+                        Intent(this, OnBoardingActivity::class.java)
+                    )
+                }
+
                 finish()
             } else {
                 binding = DataBindingUtil.setContentView(this, R.layout.activity_login)

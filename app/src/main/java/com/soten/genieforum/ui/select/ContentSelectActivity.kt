@@ -43,10 +43,6 @@ class ContentSelectActivity : AppCompatActivity() {
 
     companion object {
         const val KEY = "age"
-
-        const val AGE10 = 10
-        const val AGE2030 = 2030
-        const val AGE4050 = 4050
     }
 
 }

@@ -20,6 +20,7 @@ import com.soten.genieforum.databinding.FragmentDetailBinding
 import com.soten.genieforum.domain.model.Comment
 import com.soten.genieforum.extensions.ToastMessage.INVALID_LOGIN
 import com.soten.genieforum.extensions.toast
+import com.soten.genieforum.ui.main.home.HomeFragment.Companion.KEY_FORUM_AGE
 import com.soten.genieforum.ui.main.home.HomeFragment.Companion.KEY_FORUM_DESCRIPTION
 import com.soten.genieforum.ui.main.home.HomeFragment.Companion.KEY_FORUM_ID
 import com.soten.genieforum.ui.main.home.HomeFragment.Companion.KEY_FORUM_TITLE
@@ -83,7 +84,7 @@ class DetailFragment : Fragment() {
                         userName = FirebaseAuth.getInstance().currentUser?.uid?.substring(0, 5),
                         createdAt = createdTimeForId()
                     ),
-                    arguments?.get(KEY_FORUM_ID).toString()
+                    arguments?.get(KEY_FORUM_AGE).toString()
                 )
                 binding.commentEditText.text.clear()
             } ?: run {

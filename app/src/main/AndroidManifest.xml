@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GenieForum">
         <activity
+            android:name=".ui.onboard.OnBoardingActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.main.home.AddForumActivity"
             android:exported="true" />
         <activity

@@ -19,4 +19,6 @@ object ToastMessage {
     const val WELCOME_COMMENT = "환영합니다"
 
     const val INVALID_LOGIN = "로그인 정보가 유효하지 않습니다."
+
+    const val NOT_CURRENT_USER = "로그인 후 이용해 주세요"
 }

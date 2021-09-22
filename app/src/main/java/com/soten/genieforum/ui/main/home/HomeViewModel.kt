@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.soten.genieforum.data.api.auth.AuthApi
 import com.soten.genieforum.data.api.forum.ForumApi
 import com.soten.genieforum.domain.model.Forum
 import dagger.assisted.Assisted
@@ -14,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val forumApi: ForumApi,
+    private val authApi: AuthApi,
 ) : ViewModel() {
 
     private val _forumLiveData = MutableLiveData<List<Forum>>()
@@ -21,6 +23,10 @@ class HomeViewModel @Inject constructor(
 
     fun fetch(key: String) = viewModelScope.launch {
         _forumLiveData.value = forumApi.getAllForum(key)
+    }
+
+    fun isCurrentUser(): Boolean {
+        return authApi.getCurrentUser() != null
     }
 
 }

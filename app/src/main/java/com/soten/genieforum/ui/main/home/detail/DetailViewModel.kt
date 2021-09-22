@@ -22,8 +22,8 @@ class DetailViewModel @Inject constructor(
         _commentLiveData.value = forumApi.getAllComments(forumId)
     }
 
-    fun addComment(comment: Comment) = viewModelScope.launch {
-        forumApi.addComment(comment)
+    fun addComment(comment: Comment, forumAge: String) = viewModelScope.launch {
+        forumApi.addComment(comment, forumAge)
     }
 
 }

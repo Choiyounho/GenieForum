@@ -37,15 +37,31 @@ class ForumFirestoreApi(
         }
     }
 
-    override suspend fun addComment(comment: Comment): Comment {
+
+    override suspend fun addComment(comment: Comment, forumAge: String): Comment {
         val newCommentReference = firestore.collection(COMMENT).document()
+        val forumReference = firestore.collection("Forums").document(comment.forumId!!)
 
         firestore.runTransaction { transaction ->
+            val forum = transaction.get(forumReference).toObject<Forum>()!!
+
+            val oldCommentCount = forum.commentCount?.toInt() ?: 0
+
+            val newCommentCount = oldCommentCount + 1
+
+            transaction.set(
+                forumReference,
+                forum.copy(
+                    commentCount = newCommentCount.toString()
+                )
+            )
+
             transaction.set(
                 newCommentReference,
                 comment,
                 SetOptions.merge()
             )
+
         }.await()
 
         return newCommentReference.get().await().toObject<Comment>()!!

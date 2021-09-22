@@ -68,9 +68,9 @@ class DetailFragment : Fragment() {
     }
 
     private fun initViews() = with(binding) {
-        arguments?.let {
-            detailTitle.text = it.get(KEY_FORUM_TITLE).toString()
-            detailDescription.text = it.get(KEY_FORUM_DESCRIPTION).toString()
+        arguments?.let { bundle ->
+            detailTitle.text = bundle.get(KEY_FORUM_TITLE).toString()
+            detailDescription.text = bundle.get(KEY_FORUM_DESCRIPTION).toString()
         }
 
         addButton.setOnClickListener {
@@ -82,9 +82,9 @@ class DetailFragment : Fragment() {
                         description = binding.commentEditText.text.toString(),
                         userName = FirebaseAuth.getInstance().currentUser?.uid?.substring(0, 5),
                         createdAt = createdTimeForId()
-                    )
+                    ),
+                    arguments?.get(KEY_FORUM_ID).toString()
                 )
-                viewModel.fetch(arguments?.get(KEY_FORUM_ID).toString())
                 binding.commentEditText.text.clear()
             } ?: run {
                 toast(INVALID_LOGIN)
@@ -92,7 +92,9 @@ class DetailFragment : Fragment() {
 
             lifecycleScope.launch {
                 addButton.isClickable = false
-                delay(5000L)
+                delay(1000L)
+                viewModel.fetch(arguments?.get(KEY_FORUM_ID).toString())
+                delay(3000L)
                 addButton.isClickable = true
             }
         }

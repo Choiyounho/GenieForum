@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="category">
+        <item>자유</item>
+        <item>연애</item>
+        <item>여행</item>
+        <item>운동</item>
+    </string-array>
+
+    <string-array name="selectAge">
+        <item>10</item>
+        <item>2030</item>
+        <item>4050</item>
+    </string-array>
+
+</resources>

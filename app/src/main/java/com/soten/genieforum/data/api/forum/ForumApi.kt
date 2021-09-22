@@ -8,7 +8,7 @@ interface ForumApi {
     suspend fun getAllForum(key: String): List<Forum>
 
     suspend fun getAllComments(commentId: String): List<Comment>
-
-    suspend fun addComment(comment: Comment): Comment
+    
+    suspend fun addComment(comment: Comment, forumId: String): Comment
 
 }

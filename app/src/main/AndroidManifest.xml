@@ -13,9 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GenieForum">
         <activity
+            android:name=".ui.main.home.AddForumActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.select.ContentSelectActivity"
-            android:theme="@style/Theme.GenieForum.Select"
-            android:label="@string/title_activity_content_select" />
+            android:label="@string/title_activity_content_select"
+            android:theme="@style/Theme.GenieForum.Select" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true"
